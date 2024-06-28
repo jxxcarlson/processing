@@ -2,6 +2,8 @@
 
  An experiment with circles placed on a grid but with random perturbations to their position, radius.
  Fill and background are both white, stroke is black.
+
+Principles: repetition, randomness, subdivision.  See [Fundamental Elements Of Generative Art (Eugen Lindwurm)](https://towardsdatascience.com/fundamental-elements-of-generative-art-11175f4741e5)
  
 */
 
