@@ -44,15 +44,24 @@ void setup() {
   
   
   for (int i = 0; i < N; i++) {
-   
-      inset(x , y, du, du, k0, irandom(0,3));
-   
+
+      // Draw inscribed rectangles, beginning with
+      // a square at (x,y) with (width, height) = (du, du)
+      // The number k0 is the contraction factor.
+      // The number of inset squares is given by 
+      // irandom(0,3));
+
+      // Do random walk motion on du, the length scale
+      // for random walk in (x,y)
       du = du + ds*randomGaussian();
       if (du < duMin) { du = duMax; };
       if (du > duMax) { du = duMin; };
-      
+
+      // Random walk in (x,y)
       x = x + du*randomGaussian();
       y = y + du*randomGaussian();
+
+      // wrap around if need be
       if (x < 0) { x = width; };
       if (y < 0) { y = height; };
       if (x > width) { x = 0; };
