@@ -5,9 +5,8 @@ class Cell {
   int active; // active gene
   float x;    // X position of the cell
   float y;    // Y position of the cell
-  float w1;   // Width 1 of the cell
-  float w2;   // Width 2 of the cell
-  float h;    // Height of the cell
+  float w;    // Width  of the cell
+  float l;    // Length of the cell
   float k;    // Some additional property of the cell
   float angle; // Angle of rotation
   float r;    // Red color component
@@ -16,14 +15,13 @@ class Cell {
   float a;    // Alpha (opacity) component
 
   // Constructor
-  Cell(String dna, int active, float x, float y, float w1, float w2, float h, float k, float angle, float r, float g, float b, float a) {
+  Cell(String dna, int active, float x, float y, float w, float l, float k, float angle, float r, float g, float b, float a) {
     this.dna = dna;
     this.active = active;
     this.x = x;
     this.y = y;
-    this.w1 = w1;
-    this.w2 = w2;
-    this.h = h;
+    this.w = w;
+    this.l = l;
     this.k = k;
     this.angle = angle;
     this.r = r;
@@ -68,30 +66,21 @@ class Cell {
   }
 
   // Getter and Setter for w1
-  float getW1() {
-    return w1;
+  float getW() {
+    return w;
   }
 
-  void setW1(float w1) {
-    this.w1 = w1;
+  void setW(float w1) {
+    this.w = w;
   }
 
-  // Getter and Setter for w2
-  float getW2() {
-    return w2;
+  // Getter and Setter for l
+  float getL() {
+    return l;
   }
 
-  void setW2(float w2) {
-    this.w2 = w2;
-  }
-
-  // Getter and Setter for h
-  float getH() {
-    return h;
-  }
-
-  void setH(float h) {
-    this.h = h;
+  void setL(float l) {
+    this.l = l;
   }
 
   // Getter and Setter for k
@@ -140,7 +129,6 @@ class Cell {
   float getA() {
     return a;
   }
-
   void setA(float a) {
     this.a = a;
   }
@@ -148,24 +136,18 @@ class Cell {
   // Display method
   void display() {
     pushMatrix();
-    translate(x, y);
-    rotate(radians(angle));
+    //translate(x - w, y);
+    //rotate(radians(angle));
     textAlign(CENTER, CENTER);
     fill(r, g, b, a);
-    noStroke();
+    
+    // stroke(10, 200,  50, 100);
+    // stroke(200, 200,  250, 150);
+    stroke(0);
+    //noStroke();
+    rect(x,y,w,l);
+    println(x,y,w,l);
 
-    float halfH = h / 2;
-    float halfW1 = w1 / 2;
-    float halfW2 = w2 / 2;
-
-    beginShape();
-    vertex(-halfW1, -halfH);
-    vertex(halfW1, -halfH);
-    vertex(halfW2, halfH);
-    vertex(-halfW2, halfH);
-    endShape(CLOSE);
-
-  
     popMatrix();
   }
 }

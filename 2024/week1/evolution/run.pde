@@ -2,26 +2,25 @@
 ArrayList<Cell> cells; // ArrayList to hold Cell objects
 
 void setup() {
-  size(600, 600);
+  size(900, 900);
   textSize(16);
 
   // Initialize the cells ArrayList
   cells = new ArrayList<Cell>();
   for (int i = 0; i < 1; i++) {
     cells.add(new Cell(
-      "FFLLLRRR", 
+      "GGGLLFRRRRRS", 
       0,          // active gene
       width/2,    // x-coordinate
-      100,   // y-coordinate
-      40,         // w1
-      40,         // w2
-      40,        // h
+      height/2,   // y-coordinate
+      24,         // w
+      24,        // l
       0.9,        // k parameter
       0,         // angle
-      0,          // r
+      10,          // r
       150,        // g
       30,         // b
-      100         // a
+      3         // a
     ));
   }
 }
@@ -55,15 +54,16 @@ void footer() {
       int dnaLength = dna.length();
       String activeGene = dna.substring(lastCell.getActive(),lastCell.getActive() + 1);
       String suffix = dna.substring(lastCell.getActive() + 1,dnaLength);
+      String listLength = str(cells.size());
+      String message = "Cell DNA (" + listLength + "): " + prefix + "(" + activeGene + ")" + suffix ;
       
-      
-      println("Last cell DNA: " + prefix + ":" + activeGene + ":" + suffix);
-      println("Last cell position: (" + lastCell.getX() + ", " + lastCell.getY() + ")");
+     //  println("Last cell DNA: " + prefix + "(" + activeGene + ")" + suffix);
+      //println("Last cell position: (" + lastCell.getX() + ", " + lastCell.getY() + ")");
       fill(0);
-      text("cells: " + str(cells.size()), width / 2, height - 60);
-      text("Last cell DNA: " + lastCell.getDna(), width / 2, height - 40);
-      text("Last cell position: (" + lastCell.getX() + ", " + lastCell.getY() + ")", width / 2, height - 20);
-      println("Number of cells: " + cells.size());
+      text(message, width / 2, height - 40);
+      text("Last cell position: (" + round(lastCell.getX()) + ", " + 
+         round(lastCell.getY()) + ") " + round(lastCell.getAngle()), width / 2, height - 20);
+     // println("Number of cells: " + cells.size());
   } else {
       fill(0);
       println("The cell list is empty.");  

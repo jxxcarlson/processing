@@ -1,40 +1,63 @@
 
-Cell newCellQ(Cell parentCell) {
-  if (parentCell == null) {
-    return null; // Return null if the parent cell is null
-  }
-  return new Cell(
-      parentCell.getDna(),
-      advance(parentCell),
-      random(0, width), //parentCell.getX() + sin(parentCell.getAngle())*cell.getH(), 
-      random(0, height), //parentCell.getY() + cos(parentCell.getAngle())*cell.getH()*(1 - parentCell.getK()), 
-      parentCell.getW1(), 
-      parentCell.getW2(), 
-      parentCell.getK()*parentCell.getH(), 
-      0, //+ 10, 
-      0,           // new angle
-      random(0,255), 
-      parentCell.getG(), 
-      parentCell.getB(), 
-      constrain(parentCell.getA()*1.1, 0, 255)
-    );
-}
-
 
 Cell newCell(Cell parentCell) {
   if (parentCell == null) {
     return null; // Return null if the parent cell is null
   }
+  char currentGene = parentCell.getDna().charAt(parentCell.getActive());
+  
+  float newX;
+  float newY;
+  
+  switch(currentGene) {
+         case 'F':
+           newX = parentCell.x + parentCell.w * sin(radians(parentCell.angle));
+           break;
+               
+         case 'S' :
+           newX = parentCell.x;
+           break;
+           
+         default:
+           newX = parentCell.x;
+           break;
+           
+  }
+               
+   switch(currentGene) {
+         case 'F':
+           newY = parentCell.y + parentCell.l * sin(radians(parentCell.angle));
+           break;
+               
+         case 'S' :
+           newY = parentCell.x;
+           break;
+           
+         default:
+           newY = parentCell.x;
+           break;
+           
+  }
+               
+  float newW  = (currentGene == 'G')
+               ?  parentCell.w/parentCell.k
+               :  parentCell.w;
+  
+
+               
+  float newL = (currentGene == 'G')
+               ?  parentCell.l/parentCell.k
+               :  parentCell.l;            
+  
   return new Cell(
     parentCell.getDna(),     // Copy DNA
-    parentCell.getActive(), // Copy active gene
-    parentCell.x + random(-50, 50), // Randomly offset x-coordinate
-    parentCell.y + random(-50, 50), // Randomly offset y-coordinate
-    parentCell.w1*parentCell.k,     // Copy and modify w1
-    parentCell.w2*parentCell.k,     // Copy and modify w2
-    parentCell.h/parentCell.k,      // Copy and modify h
+    advance(parentCell), // Copy active gene
+    newX, // Randomly offset x-coordinate
+    newY, // + random(0, 50), // Randomly offset y-coordinate
+    newW,     // Copy and modify w
+    newL,      // Copy and modify l
     parentCell.k, // Copy k parameter
-    parentCell.angle + random(-30, 30), // Randomly adjust angle
+    parentCell.angle + 10, //+ random(-30, 30), // Randomly adjust angle
     parentCell.r, // Copy r
     parentCell.g, // Copy g
     parentCell.b, // Copy b
@@ -42,26 +65,6 @@ Cell newCell(Cell parentCell) {
   );
 }
 
-Cell newCell2(Cell parentCell) {
-  if (parentCell == null) {
-    return null; // Return null if the parent cell is null
-  }
-  return new Cell(
-    parentCell.getDna(), // Copy DNA
-    parentCell.getActive(), // Copy active gene
-    parentCell.x + random(-50, 50), // Randomly offset x-coordinate
-    parentCell.y + random(-50, 50), // Randomly offset y-coordinate
-    parentCell.w1, // Copy w1
-    parentCell.w2, // Copy w2
-    parentCell.h, // Copy h
-    parentCell.k, // Copy k parameter
-    parentCell.angle + random(-30, 30), // Randomly adjust angle
-    parentCell.r, // Copy r
-    parentCell.g, // Copy g
-    parentCell.b, // Copy b
-    parentCell.a // Copy a
-  );
-}
 
 Cell lastCell(ArrayList<Cell> cells) {
   if (cells.size() == 0) {
