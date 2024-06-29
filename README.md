@@ -4,6 +4,8 @@ Experiments, 2024
 
 ## Week 1 (June 28)
 
+### squares2
+
 ![image](image/export_240628_151856.png)
 
 **Program:** 2024/week1/squares/squares.pde
@@ -14,3 +16,5 @@ Principles: repetition, randomness, subdivision.  See [Fundamental Elements Of G
 ### squares2
 
 ![image](2024/week1/squares2/portfolio/export_240628_172630.png)
+
+Like squares, but set probability of creation of a square in specified regions to zero,
