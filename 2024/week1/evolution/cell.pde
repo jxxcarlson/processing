@@ -136,16 +136,13 @@ class Cell {
   // Display method
   void display() {
     pushMatrix();
-    //translate(x - w, y);
-    //rotate(radians(angle));
+   // translate(x, y);
+    rotate(radians(angle));
     textAlign(CENTER, CENTER);
     fill(r, g, b, a);
-    
-    // stroke(10, 200,  50, 100);
-    // stroke(200, 200,  250, 150);
     stroke(0);
-    //noStroke();
     rect(x,y,w,l);
+    ellipse(x, y + w/2, 10, 10); 
     println(x,y,w,l);
 
     popMatrix();

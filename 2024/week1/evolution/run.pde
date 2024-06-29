@@ -2,25 +2,25 @@
 ArrayList<Cell> cells; // ArrayList to hold Cell objects
 
 void setup() {
-  size(900, 900);
+  size(1400, 900);
   textSize(16);
 
   // Initialize the cells ArrayList
   cells = new ArrayList<Cell>();
   for (int i = 0; i < 1; i++) {
     cells.add(new Cell(
-      "GGGLLFRRRRRS", 
+      "FGFGFGS", 
       0,          // active gene
       width/2,    // x-coordinate
-      height/2,   // y-coordinate
-      24,         // w
-      24,        // l
-      0.9,        // k parameter
+      height/2,        // y-coordinate
+      100,         // w
+      50,         // l
+      1.1,        // k parameter
       0,         // angle
-      10,          // r
+      10,         // r
       150,        // g
       30,         // b
-      3         // a
+      3           // a
     ));
   }
 }
@@ -57,16 +57,13 @@ void footer() {
       String listLength = str(cells.size());
       String message = "Cell DNA (" + listLength + "): " + prefix + "(" + activeGene + ")" + suffix ;
       
-     //  println("Last cell DNA: " + prefix + "(" + activeGene + ")" + suffix);
-      //println("Last cell position: (" + lastCell.getX() + ", " + lastCell.getY() + ")");
       fill(0);
       text(message, width / 2, height - 40);
       text("Last cell position: (" + round(lastCell.getX()) + ", " + 
          round(lastCell.getY()) + ") " + round(lastCell.getAngle()), width / 2, height - 20);
-     // println("Number of cells: " + cells.size());
+     
   } else {
-      fill(0);
-      println("The cell list is empty.");  
+      fill(0); 
       text("The cell list is empty.", width / 2, height - 40);
     }
 }
