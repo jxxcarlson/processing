@@ -17,5 +17,5 @@ Principles: repetition, randomness, subdivision.  See [Fundamental Elements Of G
 
 ![image](2024/week1/squares2/portfolio/export_240628_172630.png)
 
-Like squares, but set probability of creation of a square in specified regions to zero. 
+Like squares, but set probability of creation of a square in specified regions to zero and increase the number of squares generated.
 Principles: as in square, but break the pattern.
