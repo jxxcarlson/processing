@@ -137,12 +137,12 @@ class Cell {
   void display() {
     pushMatrix();
    // translate(x, y);
-    rotate(radians(angle));
+    // rotate(radians(angle));
     textAlign(CENTER, CENTER);
     fill(r, g, b, a);
-    stroke(0);
+    stroke(r, g, b, a);
     rect(x,y,w,l);
-    ellipse(x, y + w/2, 10, 10); 
+    //ellipse(x, y + w/2, 10, 10); 
     println(x,y,w,l);
 
     popMatrix();

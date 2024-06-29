@@ -1,5 +1,26 @@
 
+import java.util.*;
+
+
 ArrayList<Cell> cells; // ArrayList to hold Cell objects
+
+String timestamp() {
+  Calendar now = Calendar.getInstance();
+  int year = now.get(Calendar.YEAR);
+  int month = now.get(Calendar.MONTH) + 1; // Months are zero-based
+  int day = now.get(Calendar.DAY_OF_MONTH);
+  int hour = now.get(Calendar.HOUR_OF_DAY);
+  int minute = now.get(Calendar.MINUTE);
+  int second = now.get(Calendar.SECOND);
+  
+  // Format the timestamp string
+  return nf(year, 4) + nf(month, 2) + nf(day, 2) + "_" + nf(hour, 2) + nf(minute, 2) + nf(second, 2);
+}
+
+
+String titlePrefix = "exports/export_"+timestamp();
+
+
 
 void setup() {
   size(1400, 900);
@@ -9,25 +30,25 @@ void setup() {
   cells = new ArrayList<Cell>();
   for (int i = 0; i < 1; i++) {
     cells.add(new Cell(
-      "FGFGFGS", 
+      "CCCFFFFFFFFFFGFFFFFFFCFFFFFFFFFFFFFFFFFFFgR", 
       0,          // active gene
       width/2,    // x-coordinate
       height/2,        // y-coordinate
-      100,         // w
-      50,         // l
-      1.1,        // k parameter
+      20,         // w
+      10,         // l
+      1.4,        // k parameter
       0,         // angle
       10,         // r
       150,        // g
       30,         // b
-      3           // a
+      20           // a
     ));
   }
 }
 
 void draw() {
   background(255); // Clear the background each frame
-
+  cells.add(newCell(lastCell(cells))); 
   // Display each cell
   for (Cell cell : cells) {
     cell.display();
@@ -38,11 +59,13 @@ void draw() {
 }
 
 void keyPressed() {
- if (key == 'n' || key == 'N') {
-    // Add a new cell 
-    // Cell c = newCell(lastCell(cells));
-    cells.add(newCell(lastCell(cells)));
-  } else { exit(); }
+ if (key == 's' || key == 'S') {
+     save(titlePrefix + ".png");
+  } 
+ else if (key == 'q' || key == 'Q' ) {
+    exit(); 
+ }
+   else {cells.add(newCell(lastCell(cells))); }
 }
 
 

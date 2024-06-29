@@ -10,67 +10,115 @@ Cell newCell(Cell parentCell) {
   float newY;
   float newW;
   float newL;
+  float newAngle;
+  float newR;
+  float newG;
+  float newB;
+  float newA;
   
-  switch(currentGene) {
-         case 'F':
-           newX = parentCell.x + parentCell.w * cos(radians(parentCell.angle));
-           break;
-               
-         case 'S' :                                                                                      
+  switch(currentGene) { 
+         case 'R':
+           newAngle = -parentCell.angle;
            newX = parentCell.x;
+           newY = parentCell.y;
+           newW = parentCell.w;;
+           newL = parentCell.l;
+           newR = parentCell.r;
+           newG = parentCell.g;
+           newB = parentCell.b;
+           newA = parentCell.a;
+           
+           break;
+           
+         
+         case 'G':
+           newAngle = parentCell.angle;
+           newX = parentCell.x;
+           newY = parentCell.y;
+           newW = parentCell.w * parentCell.k;
+           newL = parentCell.l * parentCell.k;
+           newR = parentCell.r;
+           newG = parentCell.g;
+           newB = parentCell.b;
+           newA = parentCell.a;
+           break;
+           
+         case 'g':
+           newAngle = parentCell.angle;
+           newX = parentCell.x;
+           newY = parentCell.y;
+           newW = parentCell.w / parentCell.k;
+           newL = parentCell.w / parentCell.k;
+           newR = parentCell.r;
+           newG = parentCell.g;
+           newB = parentCell.b;
+           newA = parentCell.a;
+           break;
+           
+         case 'F':
+            if (parentCell.angle > 0)
+              {newAngle = parentCell.angle + 10 + random(-6, 6);}
+            else 
+              {newAngle = parentCell.angle - 10  + random(-6, 6);}
+              
+           float xx = parentCell.x + parentCell.w * cos(radians(parentCell.angle));
+           float yy = parentCell.y - parentCell.w * sin(radians(parentCell.angle));
+              
+           if (xx < -50) { newX = 100; } 
+           else if (xx > width + 50) { newX = width - 100;}
+           else { newX = xx; }
+           
+           if (yy < -50) { newY = 100; } 
+           else if (yy > height + 50) { newY = height - 100;}
+           else { newY = yy; }
+           
+           newW = parentCell.w;
+           newL = parentCell.l;
+           newR = parentCell.r;
+           newG = parentCell.g;
+           newB = parentCell.b;
+           newA = parentCell.a;
+           break;
+           
+         case 'C' : 
+           newAngle = parentCell.angle;
+           newX = parentCell.x;
+           newY = parentCell.y;
+           newW = parentCell.w;
+           newL = parentCell.l;
+           newR = constrain(parentCell.r + random(-12,12), 0, 255);
+           newG = constrain(parentCell.g + random(-12,12), 0, 255);
+           newB = constrain(parentCell.b + random(-12,12), 0, 255);
+           newA = constrain(parentCell.a + random(-12,12), 10, 50);
+           break;           
+           
+         case 'S' : 
+           newAngle = parentCell.angle;
+           newX = parentCell.x;
+           newY = parentCell.y;
+           newW = parentCell.k;
+           newL = parentCell.l;
+           newR = parentCell.r;
+           newG = parentCell.g;
+           newB = parentCell.b;
+           newA = parentCell.a;
            break;
            
          default:
+           newAngle = parentCell.angle;
            newX = parentCell.x;
+           newY = parentCell.y;
+           newW = parentCell.k;
+           newL = parentCell.l;
+           newR = parentCell.r;
+           newG = parentCell.g;
+           newB = parentCell.b;
+           newA = parentCell.a;
            break;
            
   }
-               
-   switch(currentGene) {
-         case 'F':
-           newY = parentCell.y - parentCell.w * sin(radians(parentCell.angle));
-           break;
-               
-         case 'S' :
-           newY = parentCell.y;
-           break;
-           
-         default:
-           newY = parentCell.y;
-           break;
-           
-  }
-               
-   switch(currentGene) {
-         case 'G':
-           newW = parentCell.k * parentCell.w;
-           break;
-               
-         case 'S' :
-           newW = parentCell.w;
-           break;
-           
-         default:
-           newW = parentCell.w;
-           break;
-           
-  }     
- 
- 
-   switch(currentGene) {
-         case 'G':
-           newL = parentCell.k * parentCell.l;
-           break;
-               
-         case 'S':
-           newL = parentCell.w;
-           break;
-           
-         default:
-           newL = parentCell.w;
-           break;
-   }
-           
+  
+      
    return new Cell(
     parentCell.getDna(),     // Copy DNA
     advance(parentCell), // Copy active gene
@@ -79,11 +127,11 @@ Cell newCell(Cell parentCell) {
     newW,     // Copy and modify w
     newL,      // Copy and modify l
     parentCell.k, // Copy k parameter
-    parentCell.angle + 10, //+ random(-30, 30), // Randomly adjust angle
-    parentCell.r, // Copy r
-    parentCell.g, // Copy g
-    parentCell.b, // Copy b
-    parentCell.a // Copy a
+    newAngle, //+ random(-30, 30), // Randomly adjust angle
+    newR, // Copy r
+    newG, // Copy g
+    newB, // Copy b
+    newA // Copy a
   );
 }
 
