@@ -4,7 +4,7 @@ Experiments, 2024
 
 ## Week 1 (June 28)
 
-### squares2
+### squares
 
 ![image](image/export_240628_151856.png)
 
