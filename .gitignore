@@ -1,0 +1,7 @@
+# Ignore all exports files
+exports/
+
+# Ignore all .DS_Store files everywhere
+.DS_Store
+
+to_edit/
