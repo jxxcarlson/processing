@@ -1,17 +1,4 @@
 
- 
-
-boolean not_in_strip(float x, float a, float r) {
-  return (abs(x -  a) > r);
-}
-
-boolean not_dead(float x, float y) {
-  float r = 80;
-  return (not_dead_spot(x,y, 200, 400, r) 
-  && not_dead_spot(x,y, 300, 500, r)
-  && not_dead_spot(x,y, 500, 700, r   ));
-}
-
 float distance2(float x1, float y1, float x2, float y2) {
     float dx = x1 - x2;
     float dy = y1 - y2;
@@ -34,7 +21,7 @@ float distance(float x1, float y1, float x2, float y2) {
 boolean not_dead_spot(float x, float y, float a, float b, float r) {
    return !(distance                                                                  (x, y, a, b) < r);
 }
- 
+
 void subdivide(float x, float y, float w, float h, float k, int depth) {
   float dx;
   float dy;
@@ -50,8 +37,6 @@ void subdivide(float x, float y, float w, float h, float k, int depth) {
 void inset(float x, float y, float w, float h, float k, int depth) {
   if (w < 10 || h < 10) { k = 1; }
   
-  fill(random(20, 70));
-  stroke(random(160, 255));
   float dx = (1 - k)*w/2;
   float dy = (1 - k)*h/2;
   if (depth == 0) {}

@@ -29,7 +29,8 @@ void setup() {
  // Parameters
   int N = 800;
   float k;
-  float k0 = 0.4;
+  float k = 0.4;
+  int g = 3;
   float x = width/2;
   float y = height/2;
   float duMax = 150;
@@ -38,8 +39,8 @@ void setup() {
   float ds = 16;
 
   
-   fill(0);
-   stroke(255);
+   fill(255);
+   stroke(0);
    
    rect(margin - 0.01, margin - 0.01 , 800 - 2*margin + 0.01, 800 - 2*margin + 0.01);
    
@@ -56,9 +57,9 @@ void setup() {
       // The number of inset squares is given by 
       // irandom(0,3));
       
-      if (not_dead(x,y)) {
-        inset(x , y, du, du, k0, irandom(0,4));
-      }
+      
+      evolve(x , y, du, du, g, k, irandom(0,4));
+      
 
       // Do random walk motion on du, the length scale
       // for random walk in (x,y)
